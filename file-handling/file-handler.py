@@ -3,17 +3,17 @@ import shutil
 import argparse
 
 def copy(sourcePath, destinationPath):
-    files = [f for f in os.listdir(sourcePath) if os.path.isfile(os.path.join(sourcePath, f))]
-    if os.path.exists(sourcePath):
-        print(f"[Exist] filename is {sourcePath}")
-    else:
+    if not os.path.exists(sourcePath):
         print(f"[Not Exist] filename is {sourcePath}")
-
-    print(f"[Destination] filename is {destinationPath}")
+    else:
+        createDirectory(destinationPath)
+        shutil.copy(sourcePath, destinationPath)
 
 def createDirectory(targetPath):
     if not os.path.exists(targetPath):
         os.makedirs(targetPath)
+    else:
+        print(f"Directory path already exist : {targetPath}")
 
 def arg_Parse():
     parser = argparse.ArgumentParser()
