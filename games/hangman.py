@@ -4,28 +4,43 @@ def getChosenWord():
     word_list = ["consider", "minute", "accord", "evident", "practice", "vain", "circumstances",
                 "constitute", "level", "dwell", "entertain", "earnest", "convention", "furnish",
                 "venture", "territory", "temper", "chamber", "liberal", "merit", "manifest",
-                "resource", "contempt", "plead", "pleague", "oppress", "disposition", "allege"]
+                "resource", "contempt", "plead", "oppress", "disposition", "allege"]
+    
     return random.choice(word_list)
 
 def promptSetup(word):
-    display = []
+    words = []
     for _ in range(len(word)):
-        display += "_"
-    return display
+        words += "_"
+    return words
 
 def main():
-
+    lifePoint = 5
+    isEnd = False
     chosenWord = getChosenWord()
     prompts = promptSetup(chosenWord)
 
-    while('_' in prompts):
-        guess = input(f"{prompts} \nGuess a letter:\t").lower()
+    while(not isEnd):
+        print(f"{' '.join(prompts)}")
+        guess = input(f"\nGuess a letter:\t").lower()
+
+        if guess not in chosenWord:
+            lifePoint -= 1
+            if lifePoint == 0:
+                isEnd = True
+                print(f"\nYou Lose!!! \nCorrect Word: {chosenWord} \nCurrent Life Point : {lifePoint}")
+            else:
+                print(f"\nWrong letter guessed!!! \nCurrent Life Point : {lifePoint}")
+            continue
+
         for position in range(len(chosenWord)):
             if chosenWord[position] == guess:
                 prompts[position] = chosenWord[position]
-        print("\n")
 
-    print(f"\nCongratzzz!!! You guessed {chosenWord}")
+        if not '_' in prompts:
+            isEnd = True
+            print(f"\nCongratzzz!!! You guessed {chosenWord}")
+
 
 if __name__ == "__main__":
     main()
