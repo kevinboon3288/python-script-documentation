@@ -26,13 +26,13 @@ def console_request():
     is_break = False
     while not is_break:
         print("-----------------------------------\n")
-        print("1. Malays\n")
-        print("2. Non-Malays\n")
+        print("1. Others\n")
+        print("2. People\n")
         list_input = int(input("Which Category List You Want to Roll: "))
         max_selection = int(input("\nHow many people want to roll: "))
         if list_input == 1:
             print("--------------------")
-            draw(get_list_from_json('malay-name-list.json'), max_selection)
+            draw(get_list_from_json('other-name-list.json'), max_selection)
         elif list_input == 2:
             print("--------------------")
             draw(get_list_from_json('name-list.json'), max_selection)
