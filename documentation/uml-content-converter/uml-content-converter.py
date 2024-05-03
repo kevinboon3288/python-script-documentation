@@ -1,4 +1,5 @@
 import os
+import re
 import argparse
 
 def convert_accessModifier(line):
@@ -25,6 +26,9 @@ def convert_objectName(line):
 def converter(filename):
     with open(filename) as file:
         for line in file:
+            if "override" in line:
+                stringBuilder = line.split("override ")
+                line = f"{stringBuilder[0]}{stringBuilder[1]}"
             access_modifier = convert_accessModifier(line)
             objectType = convert_objectType(line)
             objectName = convert_objectName(line)
