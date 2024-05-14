@@ -23,12 +23,19 @@ def convert_objectName(line):
     else:
         return name[2]
 
+def rebuild_without_override(line):
+    stringBuilder = line.split("override ")
+    return f"{stringBuilder[0]}{stringBuilder[1]}"
+    
 def converter(filename):
+    if os.path.getsize(filename) == 0:
+        print(f"Empty content in {filename}")
+        return
+
     with open(filename) as file:
         for line in file:
             if "override" in line:
-                stringBuilder = line.split("override ")
-                line = f"{stringBuilder[0]}{stringBuilder[1]}"
+                line = rebuild_without_override(line)
             access_modifier = convert_accessModifier(line)
             objectType = convert_objectType(line)
             objectName = convert_objectName(line)
