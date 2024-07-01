@@ -1,12 +1,9 @@
 import random
+from words_library import Library
 
 def getChosenWord():
-    word_list = ["consider", "minute", "accord", "evident", "practice", "vain", "circumstances",
-                "constitute", "level", "dwell", "entertain", "earnest", "convention", "furnish",
-                "venture", "territory", "temper", "chamber", "liberal", "merit", "manifest",
-                "resource", "contempt", "plead", "oppress", "disposition", "allege"]
-    
-    return random.choice(word_list)
+    library = Library()  
+    return random.choice(library.get_words())
 
 def promptSetup(word):
     words = []

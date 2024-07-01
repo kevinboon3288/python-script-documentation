@@ -1,6 +1,7 @@
 from models.resource import Resource
 from models.coffee import Coffee
 import json
+import os
 
 class Menu():
     def __init__(self):
@@ -26,8 +27,11 @@ class Menu():
             print(f"{counter+1}.{self.Coffees[counter].Name.upper()} ({self.Coffees[counter].Price})")
         print("****************************\n")
 
-    def Init(self):
-        with open('application\coffee-machine\data.json') as file:
+    def Init(self, json_path):
+        if os.path.isdir(json_path):
+            raise ValueError(f"Invalid repo directory path: {json_path}")
+
+        with open(json_path) as file:
             data = json.load(file)
             for item in data:
                 if item == "resource":

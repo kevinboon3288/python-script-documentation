@@ -1,4 +1,4 @@
-from models.resource import *
+from models.resource import Resource
 
 class Coffee(Resource):
     def __init__(self, name):
