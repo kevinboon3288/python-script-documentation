@@ -1,4 +1,4 @@
-from models.menu import *
+from models.menu import Menu
 
 def ShowMenuOption(coffeeMenu):
     print("****************************")
@@ -17,7 +17,7 @@ def ShowMenuOption(coffeeMenu):
 def main():
     isEnd = False
     coffeeMenu = Menu()
-    coffeeMenu.Init()
+    coffeeMenu.Init("data.json")
 
     while(not isEnd):
         if input(f"Start Menu (Y/N):").lower() != "y":
